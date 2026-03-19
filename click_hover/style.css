@@ -31,3 +31,23 @@ body {
     background-color: #f0f0f0;
     font-family: 'Helvetica', sans-serif;
 }   
+
+.button {
+    background-color: pink;
+    color: hotpink;
+    border: 2px solid hotpink;
+}
+
+.button2 {
+    background-color: lightblue;
+    color: blue;
+    border: 2px solid blue;
+}
+
+.buddies {
+    height: 800px;
+    width: 800px;
+    position: fixed;
+    top: 20%;
+    left: 20%;
+}
