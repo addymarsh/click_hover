@@ -45,9 +45,151 @@ body {
 }
 
 .buddies {
-    height: 800px;
+    height: 700px;
     width: 800px;
     position: fixed;
-    top: 20%;
+    top: 2%;
     left: 20%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    color: blue;
+    background: linear-gradient(180deg, rgba(80, 170, 255, 0.95), rgba(110, 200, 255, 0.75));
+    overflow: hidden;
+    border-radius: 24px;
+    border: 2px solid rgba(120, 180, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buddies-text {
+    position: relative;
+    z-index: 2; /* keep text above clouds */
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    z-index: 1; /* behind text */
+    left: -220px;
+    width: 140px;
+    height: 55px;
+    top: 30%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50px;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.08));
+    pointer-events: none;
+    opacity: 0;
+}
+
+.cloud::before {
+    content: "";
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    background: inherit;
+    border-radius: 50%;
+    top: -42px;
+    left: 18px;
+}
+
+.cloud::after {
+    content: "";
+    position: absolute;
+    width: 95px;
+    height: 95px;
+    background: inherit;
+    border-radius: 50%;
+    top: -54px;
+    right: 18px;
+}
+
+@keyframes cloudFly {
+    from { left: -220px; }
+    to { left: 100%; }
+}
+
+.buddies.clouds-on .cloud {
+    opacity: 1;
+    animation: cloudFly 2.8s linear infinite;
+}
+
+.cloud1 { top: 25%; animation-delay: 0s; }
+.cloud2 { top: 50%; animation-delay: 5s; }
+.cloud3 { top: 75%; animation-delay: 10s; }
+
+.radiate {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    height: 100vh;
+    width: 100vw;
+    font-family: "lucinda console", monospace;
+    font-size: 200px;
+  }
+  
+  /* The radiating element (ripple) */
+  .ripple {
+    position: absolute;
+    background: rgba(170, 0, 0, 0.35); /* Default; overridden with random color in JS */
+    border-radius: 50%;
+    transform: scale(0);
+    animation: radiate 0.6s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes radiate {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  .yay {
+    display: flex;
+    text-align: center;
+    font-size: 400px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: goldenrod;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Page 4: allow jQuery to animate vertical "jump" via top property */
+  .yay > div {
+    position: relative;
+    display: inline-block;
+  }
+
+  .cfour {
+    color: red;
+    font-size: 20px;
+  }
+
+/* Page 4: confetti burst on click */
+.confetti-piece {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 12px;
+  z-index: 99999;
+  pointer-events: none;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation-name: confetti-pop;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-pop {
+  from {
+    transform: translate(0px, 0px) rotate(0deg);
+    opacity: 1;
+  }
+  to {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
+    opacity: 0;
+  }
 }
